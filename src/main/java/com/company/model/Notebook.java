@@ -1,18 +1,32 @@
 package com.company.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
 public class Notebook {
+    @Id
+    private Integer id;
     private int processor;
     private int hdd;
     private String producer;
     private String model;
 
-    public Notebook(int processor, int hdd, String producer, String model) {
+    public Notebook(Integer id, int processor, int hdd, String producer, String model) {
+        this.id = id;
         this.processor = processor;
         this.hdd = hdd;
         this.producer = producer;
         this.model = model;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public int getProcessor() {
@@ -52,11 +66,11 @@ public class Notebook {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Notebook notebook = (Notebook) o;
-        return processor == notebook.processor && hdd == notebook.hdd && Objects.equals(producer, notebook.producer) && Objects.equals(model, notebook.model);
+        return processor == notebook.processor && hdd == notebook.hdd && Objects.equals(id, notebook.id) && Objects.equals(producer, notebook.producer) && Objects.equals(model, notebook.model);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(processor, hdd, producer, model);
+        return Objects.hash(id, processor, hdd, producer, model);
     }
 }
