@@ -3,6 +3,8 @@ package com.company.services;
 import com.company.dao.NotebookRepository;
 import com.company.model.Notebook;
 import com.company.model.NotebookList;
+import com.company.model.User;
+import com.company.model.UserNotebook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +30,10 @@ public class NotebookService {
         notebooks.get(0);
         notebooks.add(notebook2);
         return new NotebookList(notebooks, 5);
+    }
+
+    public UserNotebook getUserNotebook() {
+        UserNotebook userNotebook = new UserNotebook(new User(1, 32, "Andrii"), getNotebookList());
+        return userNotebook;
     }
 }

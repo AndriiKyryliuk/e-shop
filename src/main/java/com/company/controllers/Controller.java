@@ -1,9 +1,8 @@
 package com.company.controllers;
 
-import com.company.model.Notebook;
-import com.company.model.NotebookList;
-import com.company.model.Response;
+import com.company.model.*;
 import com.company.services.NotebookService;
+import com.company.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
     @Autowired
     private NotebookService service;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/")
     public Response<Notebook> rest() {
@@ -27,6 +28,15 @@ public class Controller {
     @GetMapping("/list")
     public NotebookList getList() {
         return service.getNotebookList();
+    }
+
+    @GetMapping("/user/notebooks")
+    public Response<UserNotebook> getUserNotebooks() {
+        return new Response<UserNotebook>(service.getUserNotebook(), HttpStatus.OK);
+    }
+    @GetMapping("/users")
+    public Response<UserList> getUsers() {
+        return new Response<UserList>(userService.getUserList(), HttpStatus.OK);
     }
 
 
