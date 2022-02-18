@@ -15,10 +15,10 @@ public class Controller {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/")
-    public Response<Notebook> rest() {
-        return new Response<Notebook>(service.getNotebook(), HttpStatus.OK);
-    }
+    // @GetMapping("/")
+    // public Response<Notebook> rest() {
+    //    return new Response<Notebook>(service.getNotebook(), HttpStatus.OK);
+    // }
 
     @GetMapping("/hdd")
     public int getHdd() {
